@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from menu.models import Menu
+from django.views.generic import View
+from .models import Menu
 
-def my_menu(request):
-    menu = get_object_or_404(Menu, name='my_menu')
-    context = {
-        'menu': menu,
-    }
-    return render(request, 'my_template.html', context)
 
+class MenuView(View):
+    template_name = 'menu/menu.html'
+
+    def get(self, request, menu_name):
+        menu = get_object_or_404(Menu, name=menu_name)
+        return render(request, self.template_name, {'menu': menu})

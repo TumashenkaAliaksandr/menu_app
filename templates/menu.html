@@ -1,0 +1,15 @@
+{% load menu_tags %}
+
+<ul>
+    {% for item in menu %}
+        <li{% if item.is_active %} class="active"{% endif %}>
+            <a href="
+                    {% if item.named_url %}{% url 'item.named_url' %}{% else %}{{ item.url }}{% endif %}">{{ item.title }}</a>
+            {% if item.children %}
+                {% draw_menu item.children %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+{% draw_menu 'main_menu' %}

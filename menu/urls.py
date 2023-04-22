@@ -1,13 +1,11 @@
-from django.urls import path
 from django.conf.urls.static import static
 
 from menu_app import settings
-from menu.views import *
-
-app_name = 'menu'
+from django.urls import path
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('', my_menu, name='my_menu')
+    path('', RedirectView.as_view(url='/main_menu/', permanent=False)),
 
 ]
 
