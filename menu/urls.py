@@ -1,11 +1,11 @@
-from django.conf.urls.static import static
-
-from menu_app import settings
+from django import template
 from django.urls import path
-from django.views.generic import RedirectView
+from .views import draw_main_menu
+from .templatetags import menu_tags
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='/main_menu/', permanent=False)),
-
+    path('', draw_main_menu, name='menu'),
 ]
 
+register = template.Library()
+register.inclusion_tag('menu.html', takes_context=True)(menu_tags.draw_main_menu)

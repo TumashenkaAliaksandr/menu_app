@@ -1,11 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import View
+from django.shortcuts import render
+from django.urls import reverse
 from .models import Menu
 
 
-class MenuView(View):
-    template_name = 'menu/menu.html'
-
-    def get(self, request, menu_name):
-        menu = get_object_or_404(Menu, name=menu_name)
-        return render(request, self.template_name, {'menu': menu})
+def draw_main_menu(request):
+    menu_items = Menu.objects.all()
+    context = {'menu': menu_items}
+    return render(request, 'menu.html', context)
