@@ -3,6 +3,7 @@ from django.urls import path
 from .views import draw_main_menu
 from .templatetags import menu_tags
 
+
 urlpatterns = [
     path('', draw_main_menu, name='menu'),
 ]

@@ -25,7 +25,7 @@ def draw_main_menu(context, menu_name):
             parent: родительский элемент меню (None, если элемент верхнего уровня)
             children: список дочерних элементов меню
             is_active: флаг, указывающий, является ли элемент активным на текущей странице
-        """
+    """
 
     menu = Menu.objects.filter(Q(name=menu_name) | Q(parent__name=menu_name)).order_by('parent__id', 'id')
 
